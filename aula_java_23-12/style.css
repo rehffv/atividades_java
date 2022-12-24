@@ -49,3 +49,18 @@
   #subtotal {
     font-size: 1.2rem;
   }
+
+  .carrinho-vazio {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:#CCCCEE;
+    font-weight: bold;
+    background-color: blueviolet;
+    width: 200px;
+    height: 40px;
+    border-radius: 6px;
+    display:none;
+  }

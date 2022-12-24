@@ -14,15 +14,15 @@
       <h2 class="title">Login</h2>
       <form action="">
         <label for="login-usuario">Nome de usuário:</label>
-        <input onchange="validateForms()" type="text" id="login-usuario" name="login-usuario" value="" class="">
+        <input onchange="validateUsernameInput()" type="text" id="login-usuario" name="login-usuario" value="" class="">
         <p class="error-text">*Usuário inválido</p>
 
         <label for="login-senha">Senha:</label>
-        <input onchange="validateForms()" type="password" id="login-senha" name="login-senha" value="" class="">
+        <input onchange="validatePasswordInput()" type="password" id="login-senha" name="login-senha" value="" class="">
         <p class="error-text">*Sennha incorreta</p>
 
         <button onclick="showSuccessMessage()" type="button">Fazer login</button>
-        <!-- FUNÇÃO PARA BUTTON: onclick="validateForms()"-->
+        
       </form>
       <div class="success-message">
         <p>Obrigada por Logar</p>
