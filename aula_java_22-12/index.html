@@ -21,12 +21,25 @@
         <input onchange="validatePasswordInput()" type="password" id="login-senha" name="login-senha" value="" class="">
         <p class="error-text">*Sennha incorreta</p>
 
-        <button onclick="showSuccessMessage()" type="button">Fazer login</button>
+        <button onclick="showMessage()" type="button">Fazer login</button>
         
       </form>
-      <div class="success-message">
-        <p>Obrigada por Logar</p>
+    <div class="flex">
+
+      <div class="fail-message">
+        <div class="flex-fail">
+          <p>Usuário ou Senha incorretos</p>
+        </div>
       </div>
+      
+      <div class="success-message">
+        <div class="flex-sucess">    
+          <p>Obrigada por Logar</p> 
+        </div>
+      </div>
+
+    </div>
+      
     </section>
   </main>
 </body>
