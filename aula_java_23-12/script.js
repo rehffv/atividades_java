@@ -3,7 +3,6 @@ const valorSubtotal = document.getElementById("valor-subtotal");
 const addProduto = document.getElementById("btn-adicionar-produto-01")
 const subProduto = document.getElementById("btn-subtrair-produto-01")
 const quantidadeProduto = document.getElementById("quantidade-produto-01")
-const carrinho_vazio = document.getElementsByClassName("carrinho-vazio")
 
 
 //quantidadeSubtotal.innerText = subtotalInfo.quantidade + " itens";
@@ -47,15 +46,9 @@ function subtrairProduto() {
         quantidadeProduto.value = Number(quantidadeProduto.value) - 1
     }
     updateSubtotalText()
-    carrinhoVazio()
 }
 
 
 
 
 
-function carrinhoVazio() {
-    if (quantidadeProduto.value = 0) {
-    carrinho_vazio[0].classList.toggle('flex')
-    }
-}

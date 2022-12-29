@@ -8,17 +8,42 @@
     background-color: honeydew;
   }
   
-  #carrinho {
+  .meu-carrinho {
     display: flex;
+    flex-direction: column; 
+    background-color: #17c3b2;
+    position: fixed;
+    width: 350px;
+    border: 1px solid #f0f0f0;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    height: 100%;   
+  }
+
+  .header-carrinho {
+    background-color: #fdd900;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;    
+  }
+
+  .pedidos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
   }
   
   .item-carrinho {
-    background-color: lightseagreen;
-    margin-right: 2rem;
-    padding: 1rem 1.5rem;
-    width: 300px;
-    border-radius: 8px;
-  }
+    display: flex;     
+  }    
   
   .capa {
     width: 80px;
@@ -50,17 +75,45 @@
     font-size: 1.2rem;
   }
 
-  .carrinho-vazio {
-    align-self: center;
+  .sub-total {
     display: flex;
+    flex-direction: column;
+    border-top: 1px solid #dedede;
+    background-color: #FFF;
+    position: absolute;    
+    bottom: 0;   
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color:#CCCCEE;
-    font-weight: bold;
-    background-color: blueviolet;
-    width: 200px;
-    height: 40px;
-    border-radius: 6px;
-    display:none;
+    height: 27%;
+    width: 100%;
+    margin: 0;
   }
+
+  .sub-total h2, .sub-total section {
+      display: flex;
+      margin: 20px 0 0 30px;
+      align-self: flex-start;
+      flex-direction: row;
+  }
+
+/* parei aqui, tentando descobrir por que o RS fica no meio - melhorar o botão -*/
+/* falta fazer a sessão de pedidos e o fundo da pág*/
+/* possivel solução: alinhar o itens-valor com o botão */
+  .itens-valor {
+  display: flex;
+   
+
+  }
+
+
+  .botao-finalizar {
+    margin: 0 0 20px 0;
+    border-radius: 7px;
+    width:  200px;
+    height: 45px;
+    font-size: 18px;
+    font-weight: bolder;    
+  }
+
+  
+
