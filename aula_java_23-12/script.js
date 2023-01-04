@@ -1,8 +1,13 @@
-const quantidadeSubtotal = document.getElementById("quantidade-subtotal");
-const valorSubtotal = document.getElementById("valor-subtotal");
+const quantidadeSubtotal = document.getElementById("quantidade-subtotal")
+const valorSubtotal = document.getElementById("valor-subtotal")
 const addProduto = document.getElementById("btn-adicionar-produto-01")
 const subProduto = document.getElementById("btn-subtrair-produto-01")
 const quantidadeProduto = document.getElementById("quantidade-produto-01")
+const excluir_pedido = document.getElementsByClassName("item-carrinho")
+const excluir_valor = document.getElementsByClassName("itens-valor")
+const carrinho_vazio = document.getElementsByClassName("mensagem-carrinho-vazio")
+const valor_zerado = document.getElementsByClassName("itens-valor-zerado")
+
 
 
 //quantidadeSubtotal.innerText = subtotalInfo.quantidade + " itens";
@@ -20,6 +25,7 @@ let subtotalInfo = {
 
 addProduto.addEventListener('click', adicionarProduto)
 subProduto.addEventListener('click', subtrairProduto)
+updateSubtotalText ()
 
 
 function calculoValorTotal(quantidadeProduto) {
@@ -49,6 +55,11 @@ function subtrairProduto() {
 }
 
 
-
+function excluirPedido() {
+    excluir_pedido[0].classList.add ('excluir-pedido')
+    excluir_valor[0].classList.add ('excluir-pedido')
+    carrinho_vazio[0].classList.add ('visible')
+    valor_zerado[0].classList.add ('visible')
+}
 
 

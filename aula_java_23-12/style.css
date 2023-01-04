@@ -7,22 +7,27 @@
   body {
     background-color: honeydew;
   }
+
+  #carrinho {
+    display: flex;
+    flex-direction: column; 
+    background-color: #FFF;
+    position: fixed;
+    width: 350px;
+    border: 1px solid #c5c6c6;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    height: 100%;
+  }
   
   .meu-carrinho {
     display: flex;
     flex-direction: column; 
-    background-color: #17c3b2;
-    position: fixed;
-    width: 350px;
-    border: 1px solid #f0f0f0;
-    z-index: 99999;
-    top: 0;
-    right: 0;
-    height: 100%;   
   }
 
   .header-carrinho {
-    background-color: #fdd900;
+    background-color: #17c3b2;
     position: relative;
     display: flex;
     align-items: center;
@@ -31,6 +36,10 @@
     width: 100%;
     margin: 0;
     font-size: 15px;    
+  }
+
+  .header-carrinho h1 {
+    color:#223737;
   }
 
   .pedidos {
@@ -42,27 +51,85 @@
   }
   
   .item-carrinho {
-    display: flex;     
-  }    
+    display: flex;
+    width: 320px;
+    justify-content: space-evenly;
+    align-items: center;  
+    border-bottom: 1px solid #c5c6c6;
+    padding: 0 0 22px 0;
+  }  
+  
+  .descricao {
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    align-items: center;
+    justify-content: space-evenly;    
+  }
+
+  .descricao p {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .lixeira-valor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+  }
+
+  .lixeira-valor img {
+    padding-top: 5px;
+  }
+  
+  .lixeira-valor h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bolder;
+    color: #17c3b2;
+    align-self:flex-end;
+    padding: 0 0 13px 0;
+  }
   
   .capa {
     width: 80px;
-    height: 100px;
+    height: 110px;
     background-color: lightgray;
+    background-image: url("img/dom_casmurro.jpg");
+    background-size: 80px 110px;
     position: relative;
   }
   
   .capa::after {
-    content: "Capa";
+    /*content: "Capa";*/
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
   }
+
+  .botoes{
+    display: flex;
+    border: 1px solid #c5c6c6;
+  }
+
+  .botoes button {
+    width: 15px;
+    height: 24px;
+    border: none;
+    background-color: #FFF;
+    font-size: 20px;    
+  }
   
-  input {
-    width: 40px;
+  .botoes input {
     text-align: center;
+    width: 30px;
+    height: 24px;    
+    border: none; 
+    background-color: #FFF;  
+    font-size: 16px; 
   }
   
   input::-webkit-outer-spin-button,
@@ -78,42 +145,71 @@
   .sub-total {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid #dedede;
+    border-top: 1px solid #c5c6c6;
     background-color: #FFF;
-    position: absolute;    
+    position: absolute;
     bottom: 0;   
     align-items: center;
     justify-content: center;
-    height: 27%;
+    height: 25%;
     width: 100%;
     margin: 0;
   }
 
-  .sub-total h2, .sub-total section {
-      display: flex;
-      margin: 20px 0 0 30px;
-      align-self: flex-start;
-      flex-direction: row;
+  .sub-total h2 {
+    width: 300px;
+    margin: 10px 0 0 0;  
   }
 
-/* parei aqui, tentando descobrir por que o RS fica no meio - melhorar o botão -*/
-/* falta fazer a sessão de pedidos e o fundo da pág*/
-/* possivel solução: alinhar o itens-valor com o botão */
   .itens-valor {
-  display: flex;
-   
-
+    display: flex;
+    width: 290px;
+    justify-content: space-around;
+    align-items: center;
   }
 
+  .itens-valor p, .itens-valor-zerado p {
+    font-size: 23px;
+    font-weight: bolder;
+  }
 
-  .botao-finalizar {
-    margin: 0 0 20px 0;
-    border-radius: 7px;
+  .botao-finalizar {  
+    border: 1px solid #c5c6c6;
+    border-radius: 5px;
     width:  200px;
     height: 45px;
-    font-size: 18px;
-    font-weight: bolder;    
+    font-size: 19px;
+    font-weight: bolder;
+    background-color: #17c3b2;
+    color:#FFF;
   }
 
-  
+  .itens-valor-zerado {
+    display: none;
+    width: 290px;
+    justify-content: space-around;
+    align-items: center;
+  }
 
+  .mensagem-carrinho-vazio {
+    display: none;
+    width: 350px;
+    margin-top: 100px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bolder;
+  }
+  .mensagem-carrinho-vazio p {
+    font-size: 15px;
+    font-weight: lighter;
+  }
+
+  .excluir-pedido {
+    display: none;
+  }
+
+  .visible {
+    display: flex;
+  }
