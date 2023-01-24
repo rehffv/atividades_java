@@ -1,4 +1,4 @@
-// ---------- FUNÇÕES GERAIS -------------- //
+/*// ---------- FUNÇÕES GERAIS -------------- //
 
 function togglePopup(input, label) {
   // Mostrar popup de campo obrigatório
@@ -22,17 +22,61 @@ function estilizarInputIncorreto(input, helper) {
   helper.classList.add("visible");
   input.classList.add("error");
   input.classList.remove("correct");
-}
+}*/
 
 // ---------- VALIDAÇÃO USERNAME ---------- //
 
 let usernameInput = document.getElementById("username");
 let usernameLabel = document.querySelector('label[for="username"]');
 let usernameHelper = document.getElementById("username-helper");
+let emailInput = document.getElementById("email");
+let emailLabel = document.querySelector('label[for="email"]');
+let emailHelper = document.getElementById("email-helper");
+const form = document.getElementById('form')
+let value = '';
 
-togglePopup(usernameInput, usernameLabel)
 
-// Validar valor do input
+
+// mostrar popoup
+// remover popup
+
+
+function togglePopUp(label, input) {
+
+  input.addEventListener('blur', (e) => {
+    if (value.length === 0) {
+      label.classList.add('required-popup')
+      input.classList.add('error')
+    } else {
+      label.classList.remove('required-popup')
+      input.classList.remove('error')
+    }
+  })
+}
+
+
+togglePopUp(usernameLabel, usernameInput)
+togglePopUp(emailLabel, emailInput)
+
+
+
+//validar valor do input
+
+usernameInput.addEventListener('change', (e) => {
+    value = e.target.value;
+})
+
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+ 
+  console.log(value)
+})
+
+
+
+
+/*// Validar valor do input
 usernameInput.addEventListener("change", (e)=> {
   let valor = e.target.value
 
@@ -149,3 +193,4 @@ submitButton.addEventListener('click', (e) => {
 
 //tentar fazer resetar os campos e deixa-lo em branco
 //colocar a condição do username que quer primeiro, e a false depois
+*/
