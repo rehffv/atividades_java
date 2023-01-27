@@ -42,7 +42,8 @@ input {
 }
 
 .helper-text {
-  display: none;
+  /*display: none;  ******* substituindo display none por visibility hidden*/
+  visibility: hidden;
   font-size: .8rem;
   color: darkred;
 }
@@ -87,5 +88,6 @@ input.correct {
 }
 
 .visible {
-  display: block;
+  /*display: block;******* substituindo display block por visibility visible*/
+  visibility: visible;
 }

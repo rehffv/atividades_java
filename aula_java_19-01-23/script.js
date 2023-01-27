@@ -47,9 +47,13 @@ function togglePopUp(label, input) {
     if (value.length === 0) {
       label.classList.add('required-popup')
       input.classList.add('error')
+    } else if (value.length > 2 && value.length < 11) {
+      input.classList.add('correct')
+      usernameHelper.classList.remove('visible')
     } else {
       label.classList.remove('required-popup')
       input.classList.remove('error')
+ 
     }
   })
 }
@@ -69,14 +73,36 @@ usernameInput.addEventListener('change', (e) => {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
+
+  if(value.length < 3) {
+    usernameInput.classList.add('error')
+    usernameHelper.innerText = 'Nome tem que ter mais de 3 letras!'
+    usernameHelper.classList.add('visible')
+  } else if (value.length > 10) {
+    usernameHelper.innerText = 'Nome tem que ter menos de 10 letras!'
+  } else {
+    usernameInput.classList.remove('error')
+    usernameHelper.classList.remove('visible')
+    enviarDadosParaAPI()
+    conferirSeTemCertoCaracter()
+  }
  
-  console.log(value)
+
 })
 
 
+function enviarDadosParaAPI() {
+  console.log('DADOS ENVIADOS')
+}
+
+function conferirSeTemCertoCaracter() {
+  const tem0arroba = value.includes('@')
+  console.log(tem0arroba)
+}
 
 
-/*// Validar valor do input
+
+// Validar valor do input
 usernameInput.addEventListener("change", (e)=> {
   let valor = e.target.value
 
@@ -93,7 +119,7 @@ usernameInput.addEventListener("change", (e)=> {
   }
 })
 
-// ---------- VALIDAÇÃO EMAIL ---------- //
+/*// ---------- VALIDAÇÃO EMAIL ---------- //
 
 let emailInput = document.getElementById("email");
 let emailLabel = document.querySelector('label[for="email"]');
