@@ -1,13 +1,13 @@
-/*// ---------- FUNÇÕES GERAIS -------------- //
+// ---------- FUNÇÕES GERAIS -------------- //
 
 function togglePopup(input, label) {
   // Mostrar popup de campo obrigatório
-  input.addEventListener("focus", () => {
+    input.addEventListener("focus", () => {
     label.classList.add("required-popup");
   });
 
   // Ocultar popup de campo obrigatório
-  input.addEventListener("blur", () => {
+    input.addEventListener("blur", () => {
     label.classList.remove("required-popup");
   });
 }
@@ -18,108 +18,40 @@ function estilizarInputCorreto(input, helper) {
   input.classList.add("correct");
 }
 
-function estilizarInputIncorreto(input, helper) {
+function estilizarInputIncorreto(input, helper, label) {
   helper.classList.add("visible");
   input.classList.add("error");
   input.classList.remove("correct");
-}*/
+  label.classList.add("required-popup"); 
+}
 
 // ---------- VALIDAÇÃO USERNAME ---------- //
 
 let usernameInput = document.getElementById("username");
 let usernameLabel = document.querySelector('label[for="username"]');
 let usernameHelper = document.getElementById("username-helper");
-let emailInput = document.getElementById("email");
-let emailLabel = document.querySelector('label[for="email"]');
-let emailHelper = document.getElementById("email-helper");
-const form = document.getElementById('form')
-let value = '';
 
-
-
-// mostrar popoup
-// remover popup
-
-
-function togglePopUp(label, input) {
-
-  input.addEventListener('blur', (e) => {
-    if (value.length === 0) {
-      label.classList.add('required-popup')
-      input.classList.add('error')
-    } else if (value.length > 2 && value.length < 11) {
-      input.classList.add('correct')
-      usernameHelper.classList.remove('visible')
-    } else {
-      label.classList.remove('required-popup')
-      input.classList.remove('error')
- 
-    }
-  })
-}
-
-
-togglePopUp(usernameLabel, usernameInput)
-togglePopUp(emailLabel, emailInput)
-
-
-
-//validar valor do input
-
-usernameInput.addEventListener('change', (e) => {
-    value = e.target.value;
-})
-
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-
-  if(value.length < 3) {
-    usernameInput.classList.add('error')
-    usernameHelper.innerText = 'Nome tem que ter mais de 3 letras!'
-    usernameHelper.classList.add('visible')
-  } else if (value.length > 10) {
-    usernameHelper.innerText = 'Nome tem que ter menos de 10 letras!'
-  } else {
-    usernameInput.classList.remove('error')
-    usernameHelper.classList.remove('visible')
-    enviarDadosParaAPI()
-    conferirSeTemCertoCaracter()
-  }
- 
-
-})
-
-
-function enviarDadosParaAPI() {
-  console.log('DADOS ENVIADOS')
-}
-
-function conferirSeTemCertoCaracter() {
-  const tem0arroba = value.includes('@')
-  console.log(tem0arroba)
-}
-
-
+togglePopup(usernameInput, usernameLabel)
 
 // Validar valor do input
 usernameInput.addEventListener("change", (e)=> {
-  let valor = e.target.value
+  let valorUsername = e.target.value
 
-  if(valor.length < 3){
-    // Adicionar estilos dinâmicos se o valor tiver menos de 3 caracteres
-    usernameHelper.innerText = "Seu username precisa ter 3 ou mais caracteres";
-    estilizarInputIncorreto(usernameInput, usernameHelper)
-    inputsCorretos.username = false;
-
-  } else {
+  if(valorUsername.length > 2){
     // Adicionar estilos dinâmicos se o valor estiver correto
     estilizarInputCorreto(usernameInput, usernameHelper);
-    inputsCorretos.username = true;
+    inputsCorretos.username = true;    
+
+  } else {
+    // Adicionar estilos dinâmicos se o valor tiver menos de 3 caracteres
+    usernameHelper.innerText = "Username precisa ter 3 ou mais caracteres.";
+    estilizarInputIncorreto(usernameInput, usernameHelper, usernameLabel)
+    inputsCorretos.username = false;
+    
   }
 })
 
-/*// ---------- VALIDAÇÃO EMAIL ---------- //
+// ---------- VALIDAÇÃO EMAIL ---------- //
 
 let emailInput = document.getElementById("email");
 let emailLabel = document.querySelector('label[for="email"]');
@@ -129,39 +61,69 @@ togglePopup(emailInput, emailLabel)
 
 // Validar valor do input
 emailInput.addEventListener("change", (e)=> {
-  let valor = e.target.value
+  let valorEmail = e.target.value
 
-  if(valor.includes("@") && valor.includes(".com")){
+  if(valorEmail.includes("@") && valorEmail.includes(".com")){
     // Adicionar estilos dinâmicos se o valor estiver correto
     estilizarInputCorreto(emailInput, emailHelper);
     inputsCorretos.email = true;
 
   } else {
     // Adicionar estilos dinâmicos se o valor tiver menos de 3 caracteres
-    emailHelper.innerText = "Precisa inserir um email válido";
-    estilizarInputIncorreto(emailInput, emailHelper);
+    emailHelper.innerText = "Insira um email válido.";
+    estilizarInputIncorreto(emailInput, emailHelper, emailLabel);
     inputsCorretos.email = false;
   }
 })
 
 
 
+
+// ---------- VALIDAÇÃO CONFIRMAÇÃO IDADE ---------- //
+
+let idadeInput = document.getElementById('idade');
+let idadeLabel = document.querySelector('label[for="idade"]');
+let idadeHelper = document.getElementById('idade-helper');
+
+
+togglePopup(idadeInput, idadeLabel)
+
+// Validar valor do input
+idadeInput.addEventListener("change", (e)=> {
+  let valorIdade = e.target.value
+
+  if (valorIdade > 0) {
+    estilizarInputCorreto(idadeInput, idadeHelper);
+    inputsCorretos.idade = true;
+  
+  } else {
+    estilizarInputIncorreto(idadeInput, idadeHelper, idadeLabel);   
+    idadeHelper.innerText = "Você deve inserir uma idade.";
+    inputsCorretos.idade = false;
+  }
+})
+
+
 // ---------- VALIDAÇÃO SENHA ---------- //
 
 const senhaInput = document.getElementById('senha');
-const senhaLabel = document.getElementById('label[for="senha"]');
+const senhaLabel = document.querySelector('label[for="senha"]');
 const senhaHelper = document.getElementById('senha-helper');
 
-senhaInput.addEventListener('blur', (e) => {
-  const senhaValue = e.target.value
 
-  if (senhaValue) {
-    estilizarInputCorreto(senhaInput, senhaHelper);
+togglePopup(senhaInput, senhaLabel)
+
+
+senhaInput.addEventListener('change', (e) => {
+  const valorSenha = e.target.value
+
+  if (valorSenha.length > 3 && valorSenha.length < 9) {
+    estilizarInputCorreto(senhaInput, senhaHelper);    
     inputsCorretos.senha = true;
 
   } else {
-    estilizarInputIncorreto(senhaInput, senhaHelper);
-    senhaHelper.innerText = 'A senha é obrigatória'
+    estilizarInputIncorreto(senhaInput, senhaHelper, senhaLabel);
+    senhaHelper.innerText = 'A senha deve ter entre 4 e 8 caracteres.'
     inputsCorretos.senha = false;
   }
 })
@@ -171,19 +133,23 @@ senhaInput.addEventListener('blur', (e) => {
 // ---------- VALIDAÇÃO CONFIRMAÇÃO SENHA ---------- //
 
 const confirmarSenhaInput = document.getElementById('confirma-senha');
-const confirmarSenhaLabel = document.getElementById('label[for="confirma-senha"]');
+const confirmarSenhaLabel = document.querySelector('label[for="confirma-senha"]');
 const confirmarSenhaHelper = document.getElementById('confirma-senha-helper');
 
-confirmarSenhaInput.addEventListener('blur', (e) => {
-  const value = e.target.value
 
-  if (value === senhaInput.value) {
+togglePopup(confirmarSenhaInput, confirmarSenhaLabel)
+
+
+confirmarSenhaInput.addEventListener('change', (e) => {
+  const valorConfirmaSenha = e.target.value
+
+  if (valorConfirmaSenha && valorConfirmaSenha === senhaInput.value) {
     estilizarInputCorreto(confirmarSenhaInput, confirmarSenhaHelper);
     inputsCorretos.confirmarSenha = true;
 
   } else {
-    estilizarInputIncorreto(confirmarSenhaInput, confirmarSenhaHelper);
-    confirmarSenhaHelper.innerText = 'As senhas devem ser iguais!'
+    estilizarInputIncorreto(confirmarSenhaInput, confirmarSenhaHelper, confirmarSenhaLabel);
+    confirmarSenhaHelper.innerText = 'As senhas devem ser iguais nos dois campos.'
     inputsCorretos.confirmarSenha = false;
   }
 })
@@ -192,10 +158,12 @@ confirmarSenhaInput.addEventListener('blur', (e) => {
 
 // ---------- HABILITAR ENVIO DE FORMULÁRIO ---------- //
 
+
 const submitButton = document.getElementById('submit');
 const inputsCorretos = {
   username: false,
   email: false,
+  idade: false,
   senha: false,
   confirmarSenha: false
 }
@@ -204,12 +172,18 @@ submitButton.addEventListener('click', (e) => {
   e.preventDefault()
   const values = Object.values(inputsCorretos)
   //console.log('array original', values)
+  
 
   const anyFalse = values.filter((value) => value === false)
   //console.log('array filtrado', anyFalse)
 
   if(!anyFalse.length) {
     alert('Formulário enviado com Sucesso')
+    resetarCampo(usernameInput)
+    resetarCampo(emailInput)
+    resetarCampo(idadeInput)
+    resetarCampo(senhaInput)
+    resetarCampo(confirmarSenhaInput)
 
   } else {
     alert('Preencha todos os campos corretamente')
@@ -217,6 +191,11 @@ submitButton.addEventListener('click', (e) => {
 
 })
 
-//tentar fazer resetar os campos e deixa-lo em branco
-//colocar a condição do username que quer primeiro, e a false depois
-*/
+//Para resetar os campos após o envio
+
+function resetarCampo (input) {
+
+input.value = '';
+input.classList.remove("correct");
+ 
+}
